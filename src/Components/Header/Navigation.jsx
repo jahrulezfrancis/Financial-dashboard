@@ -1,52 +1,39 @@
 import * as React from 'react';
-import Box from '@mui/material/Box';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
-import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
-import Divider from '@mui/material/Divider';
-import InboxIcon from '@mui/icons-material/Inbox';
-import DraftsIcon from '@mui/icons-material/Drafts';
+import { Grid, Input, useMediaQuery } from '@mui/material';
+import HeaderLogo from "../Images/Logo.png"
+import { NavLink } from 'react-router-dom';
 
 export default function Navigation() {
-  return (
-    <Box sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}>
-      <nav aria-label="main mailbox folders">
-        <List>
-          <ListItem disablePadding>
-            <ListItemButton>
-              <ListItemIcon>
-                <InboxIcon />
-              </ListItemIcon>
-              <ListItemText primary="Inbox" />
-            </ListItemButton>
-          </ListItem>
-          <ListItem disablePadding>
-            <ListItemButton>
-              <ListItemIcon>
-                <DraftsIcon />
-              </ListItemIcon>
-              <ListItemText primary="Drafts" />
-            </ListItemButton>
-          </ListItem>
-        </List>
-      </nav>
-      <Divider />
-      <nav aria-label="secondary mailbox folders">
-        <List>
-          <ListItem disablePadding>
-            <ListItemButton>
-              <ListItemText primary="Trash" />
-            </ListItemButton>
-          </ListItem>
-          <ListItem disablePadding>
-            <ListItemButton component="a" href="#simple-list">
-              <ListItemText primary="Spam" />
-            </ListItemButton>
-          </ListItem>
-        </List>
-      </nav>
-    </Box>
-  );
+    const onMobile = useMediaQuery('(max-width: 1000px)')
+    return (
+        <Grid sx={{ width: '100%', bgcolor: '#0F0F13' }} >
+            <List>
+                <Grid container sx={{ display: 'flex', flexDirection: onMobile ? 'row' : 'column' }}>
+                    <ListItem disablePadding sx={{}}>
+                        <ListItemButton>
+                            <img src={HeaderLogo} alt='header-logo' />
+                        </ListItemButton>
+                    </ListItem>
+                    <ListItem>
+                        <Input sx={{ bgcolor: '#000000', borderRadius: '1em', color: '#BBC4BB', paddingLeft: '1em', height: '2.5em' }} placeholder='Search' type='search' />
+                    </ListItem>
+                    <ListItem disablePadding sx={{ color: '#ffffff' }}>
+                        <NavLink>
+                            Naso
+                        </NavLink>
+                    </ListItem>
+                    <ListItem sx={{ color: '#ffffff' }} disablePadding color='white'>
+                        <ListItemText primary="Home" />
+                    </ListItem>
+                    <ListItem sx={{ color: '#ffffff' }} disablePadding>
+                        <ListItemText primary="About" />
+                    </ListItem>
+                </Grid>
+            </List>
+        </Grid>
+    );
 }
