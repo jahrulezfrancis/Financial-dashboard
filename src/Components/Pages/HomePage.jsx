@@ -4,7 +4,7 @@ import Navigation from "../Header/Navigation";
 
 export function Homepage() {
     return (
-        <Box>
+        <Box sx={{bgcolor: 'black'}}>
             <Navigation />
             <HeaderIntro />
         </Box>
