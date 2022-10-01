@@ -1,39 +1,158 @@
 import * as React from 'react';
-import List from '@mui/material/List';
-import ListItem from '@mui/material/ListItem';
-import ListItemButton from '@mui/material/ListItemButton';
-import ListItemText from '@mui/material/ListItemText';
-import { Grid, Input, useMediaQuery } from '@mui/material';
+import { Grid, Input } from '@mui/material';
 import HeaderLogo from "../Images/Logo.png"
-import { NavLink } from 'react-router-dom';
+import { Link as NavLink } from 'react-router-dom';
+import { Box } from '@mui/system';
+import NotificationsActiveIcon from '@mui/icons-material/NotificationsActive';
+import DeleteIcon from '@mui/icons-material/Delete';
+import GridViewIcon from '@mui/icons-material/GridView';
+import EqualizerIcon from '@mui/icons-material/Equalizer';
+import {InputAdornment} from '@mui/material';
+import Avatar from '@mui/material/Avatar';
+import Menu from '@mui/material/Menu';
+import MenuItem from '@mui/material/MenuItem';
+import ListItemIcon from '@mui/material/ListItemIcon';
+import Divider from '@mui/material/Divider';
+import IconButton from '@mui/material/IconButton';
+import Tooltip from '@mui/material/Tooltip';
+import PersonAdd from '@mui/icons-material/PersonAdd';
+import Settings from '@mui/icons-material/Settings';
+import Logout from '@mui/icons-material/Logout';
+import { Search } from '@mui/icons-material';
+import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
+
 
 export default function Navigation() {
-    const onMobile = useMediaQuery('(max-width: 1000px)')
+    // const onMobile = useMediaQuery('(max-width: 1000px)')
     return (
-        <Grid sx={{ width: '100%', bgcolor: '#0F0F13' }} >
-            <List>
-                <Grid container sx={{ display: 'flex', flexDirection: onMobile ? 'row' : 'column' }}>
-                    <ListItem disablePadding sx={{}}>
-                        <ListItemButton>
-                            <img src={HeaderLogo} alt='header-logo' />
-                        </ListItemButton>
-                    </ListItem>
-                    <ListItem>
-                        <Input sx={{ bgcolor: '#000000', borderRadius: '1em', color: '#BBC4BB', paddingLeft: '1em', height: '2.5em' }} placeholder='Search' type='search' />
-                    </ListItem>
-                    <ListItem disablePadding sx={{ color: '#ffffff' }}>
+        <Grid sx={{ width: '100%', bgcolor: '#0F0F13', p: '1em', alignItems: 'center' }} >
+            <Grid container gap={3} sx={{ display: 'flex', justifyContent: 'space-around', alignItems: 'center' }}>
+                <Box>
+                    <img src={HeaderLogo} alt='header-logo' />
+                </Box>
+                <Box>
+                    <Input sx={{ bgcolor: '#000000', borderRadius: '1em', color: '#BBC4BB', paddingLeft: '1em', width: '20em', height: '2.5em' }}
+                   startAdornment={
+                    <InputAdornment position="start">
+                      <Search sx={{color:'white'}} />
+                    </InputAdornment>
+                  }
+                    placeholder='Search' type='search' />
+                </Box>
+                <Box>
+                    <Grid container gap={4} alignItems='center'>
                         <NavLink>
-                            Naso
+                            <NotificationsActiveIcon />
                         </NavLink>
-                    </ListItem>
-                    <ListItem sx={{ color: '#ffffff' }} disablePadding color='white'>
-                        <ListItemText primary="Home" />
-                    </ListItem>
-                    <ListItem sx={{ color: '#ffffff' }} disablePadding>
-                        <ListItemText primary="About" />
-                    </ListItem>
-                </Grid>
-            </List>
+                        <NavLink>
+                            <DeleteIcon />
+                        </NavLink>
+                        <NavLink>
+                            <GridViewIcon />
+                        </NavLink>
+                        <NavLink>
+                            <EqualizerIcon />
+                        </NavLink>
+                        <NavLink  endIcon={<ArrowDropDownIcon />} underline='none'>
+                            <AccountMenu />
+                            
+                        </NavLink>
+                    </Grid>
+                </Box>
+            </Grid>
         </Grid>
+    );
+}
+
+
+
+
+export function AccountMenu() {
+    const [anchorEl, setAnchorEl] = React.useState(null);
+    const open = Boolean(anchorEl);
+    const handleClick = (event) => {
+        setAnchorEl(event.currentTarget);
+    };
+    const handleClose = () => {
+        setAnchorEl(null);
+    };
+    return (
+        <React.Fragment>
+            <Box sx={{ display: 'flex', alignItems: 'center', textAlign: 'center' }}>
+                <Tooltip title="Account settings">
+                    <IconButton
+                        onClick={handleClick}
+                        size="small"
+                        sx={{ ml: 2 }}
+                        aria-controls={open ? 'account-menu' : undefined}
+                        aria-haspopup="true"
+                        aria-expanded={open ? 'true' : undefined}
+                    >
+                        <Avatar sx={{ width: 32, height: 32 }}>M</Avatar>
+                    </IconButton>
+                </Tooltip>
+            </Box>
+            <Menu
+                anchorEl={anchorEl}
+                id="account-menu"
+                open={open}
+                onClose={handleClose}
+                onClick={handleClose}
+                PaperProps={{
+                    elevation: 0,
+                    sx: {
+                        overflow: 'visible',
+                        filter: 'drop-shadow(0px 2px 8px rgba(0,0,0,0.32))',
+                        mt: 1.5,
+                        '& .MuiAvatar-root': {
+                            width: 32,
+                            height: 32,
+                            ml: -0.5,
+                            mr: 1,
+                        },
+                        '&:before': {
+                            content: '""',
+                            display: 'block',
+                            position: 'absolute',
+                            top: 0,
+                            right: 14,
+                            width: 10,
+                            height: 10,
+                            bgcolor: 'background.paper',
+                            transform: 'translateY(-50%) rotate(45deg)',
+                            zIndex: 0,
+                        },
+                    },
+                }}
+                transformOrigin={{ horizontal: 'right', vertical: 'top' }}
+                anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
+            >
+                <MenuItem>
+                    <Avatar /> Profile
+                </MenuItem>
+                <MenuItem>
+                    <Avatar /> My account
+                </MenuItem>
+                <Divider />
+                <MenuItem>
+                    <ListItemIcon>
+                        <PersonAdd fontSize="small" />
+                    </ListItemIcon>
+                    Add another account
+                </MenuItem>
+                <MenuItem>
+                    <ListItemIcon>
+                        <Settings fontSize="small" />
+                    </ListItemIcon>
+                    Settings
+                </MenuItem>
+                <MenuItem>
+                    <ListItemIcon>
+                        <Logout fontSize="small" />
+                    </ListItemIcon>
+                    Logout
+                </MenuItem>
+            </Menu>
+        </React.Fragment>
     );
 }
