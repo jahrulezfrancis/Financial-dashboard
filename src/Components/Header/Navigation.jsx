@@ -19,7 +19,6 @@ import PersonAdd from '@mui/icons-material/PersonAdd';
 import Settings from '@mui/icons-material/Settings';
 import Logout from '@mui/icons-material/Logout';
 import { Search } from '@mui/icons-material';
-import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 
 
 export default function Navigation() {
@@ -53,7 +52,7 @@ export default function Navigation() {
                         <NavLink>
                             <EqualizerIcon />
                         </NavLink>
-                        <NavLink  endIcon={<ArrowDropDownIcon />} underline='none'>
+                        <NavLink underline='none'>
                             <AccountMenu />
                             
                         </NavLink>
