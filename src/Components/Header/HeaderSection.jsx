@@ -6,6 +6,7 @@ import BTCCard from "../Images/btc-red-yellow.png"
 import EURCard from "../Images/eur.png"
 import USDCard from "../Images/red-usd-card.png"
 import { MdArrowDropUp } from "react-icons/md"
+import { Features } from "../Sections/Features";
 
 
 
@@ -13,7 +14,7 @@ import { MdArrowDropUp } from "react-icons/md"
 export function StatisticsTemplate(props) {
     return (
         <Box>
-            <Grid  columnSpacing={10}>
+            <Grid columnSpacing={10}>
                 <Stack direction='row' gap={3}>
                     <Box spacing={3}>
                         <Typography variant='h5' color='white'>{props.type}</Typography>
@@ -96,6 +97,9 @@ export default function HeaderIntro() {
             </Grid>
             <Box p='4em'>
                 <Statistics />
+            </Box>
+            <Box>
+                <Features />
             </Box>
         </Box >
 
