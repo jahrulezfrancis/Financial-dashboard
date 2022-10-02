@@ -10,25 +10,51 @@ import { MdArrowDropUp } from "react-icons/md"
 
 
 
-export function Statistics() {
+export function StatisticsTemplate(props) {
     return (
         <Box>
-            <Grid>
+            <Grid  columnSpacing={10}>
                 <Stack direction='row' gap={3}>
                     <Box spacing={3}>
-                        <Typography variant='h4' color='white'>Income</Typography>
-                        <Typography variant='h4' color='white'>$32,134</Typography>
+                        <Typography variant='h5' color='white'>{props.type}</Typography>
+                        <Typography variant='h5' color='white'>{props.amount}</Typography>
                     </Box>
-                    <Box pt='.9em'>
-                        <Icon color="white" component={<MdArrowDropUp />} />
-                        <Typography variant='h4' color='white'>
-                            2.5
+                    <Box pt='.5em'>
+                        <Icon color="white" component={MdArrowDropUp} />
+                        <Typography variant='h6' color='white'>
+                            {props.increaseNumber}
                         </Typography>
                     </Box>
                 </Stack>
                 <Typography variant='p' color='white'>
-                    Compared to $21,340 last month
+                    {props.bottomMessage}
                 </Typography>
+            </Grid>
+        </Box>
+    )
+}
+
+
+export function Statistics() {
+    return (
+        <Box>
+            <Grid container gap='3em'>
+                <StatisticsTemplate type='Income'
+                    amount='$33,134' increaseNumber='2.5%'
+                    bottomMessage='Compared to $21,340 last month'
+                />
+                <StatisticsTemplate type='Expense'
+                    amount='$4,541' increaseNumber='2.5%'
+                    bottomMessage='Compared to $21,340 last month'
+                />
+                <StatisticsTemplate type='Cashback'
+                    amount='$1.324' increaseNumber='4.5%'
+                    bottomMessage='Compared to $21,340 last month'
+                />
+                <StatisticsTemplate type='Monthly Turnover'
+                    amount='$87,324' increaseNumber='31%'
+                    bottomMessage='Compared to $21,340 last month'
+                />
             </Grid>
         </Box>
     )
