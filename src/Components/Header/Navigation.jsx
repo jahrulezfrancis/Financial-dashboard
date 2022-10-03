@@ -7,7 +7,7 @@ import NotificationsActiveIcon from '@mui/icons-material/NotificationsActive';
 import DeleteIcon from '@mui/icons-material/Delete';
 import GridViewIcon from '@mui/icons-material/GridView';
 import EqualizerIcon from '@mui/icons-material/Equalizer';
-import {InputAdornment} from '@mui/material';
+import { InputAdornment } from '@mui/material';
 import Avatar from '@mui/material/Avatar';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
@@ -24,42 +24,44 @@ import { Search } from '@mui/icons-material';
 export default function Navigation() {
     // const onMobile = useMediaQuery('(max-width: 1000px)')
     return (
-        <Grid sx={{ width: '100%', bgcolor: '#0F0F13', p: '1em', alignItems: 'center' }} >
-            <Grid container gap={3} sx={{ display: 'flex', justifyContent: 'space-around', alignItems: 'center' }}>
-                <Box>
-                    <img src={HeaderLogo} alt='header-logo' />
-                </Box>
-                <Box>
-                    <Input sx={{ bgcolor: '#000000', borderRadius: '1em', color: '#BBC4BB', paddingLeft: '1em', width: '20em', height: '2.5em' }}
-                   startAdornment={
-                    <InputAdornment position="start">
-                      <Search sx={{color:'white'}} />
-                    </InputAdornment>
-                  }
-                    placeholder='Search' type='search' />
-                </Box>
-                <Box>
-                    <Grid container gap={4} alignItems='center'>
-                        <NavLink>
-                            <NotificationsActiveIcon />
-                        </NavLink>
-                        <NavLink>
-                            <DeleteIcon />
-                        </NavLink>
-                        <NavLink>
-                            <GridViewIcon />
-                        </NavLink>
-                        <NavLink>
-                            <EqualizerIcon />
-                        </NavLink>
-                        <NavLink underline='none'>
-                            <AccountMenu />
-                            
-                        </NavLink>
-                    </Grid>
-                </Box>
+        <Box zIndex='1' position='fixed' right='0' left='0' top='0' mb='10em'>
+            <Grid sx={{ width: '100%', bgcolor: '#0F0F13', p: '1em', alignItems: 'center' }} >
+                <Grid container gap={3} sx={{ display: 'flex', justifyContent: 'space-around', alignItems: 'center' }}>
+                    <Box>
+                        <img src={HeaderLogo} alt='header-logo' />
+                    </Box>
+                    <Box>
+                        <Input sx={{ bgcolor: '#000000', borderRadius: '1em', color: '#BBC4BB', paddingLeft: '1em', width: '20em', height: '2.5em' }}
+                            startAdornment={
+                                <InputAdornment position="start">
+                                    <Search sx={{ color: 'white' }} />
+                                </InputAdornment>
+                            }
+                            placeholder='Search' type='search' />
+                    </Box>
+                    <Box>
+                        <Grid container gap={4} alignItems='center'>
+                            <NavLink>
+                                <NotificationsActiveIcon />
+                            </NavLink>
+                            <NavLink>
+                                <DeleteIcon />
+                            </NavLink>
+                            <NavLink>
+                                <GridViewIcon />
+                            </NavLink>
+                            <NavLink>
+                                <EqualizerIcon />
+                            </NavLink>
+                            <NavLink underline='none'>
+                                <AccountMenu />
+
+                            </NavLink>
+                        </Grid>
+                    </Box>
+                </Grid>
             </Grid>
-        </Grid>
+        </Box>
     );
 }
 
