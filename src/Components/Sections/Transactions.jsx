@@ -1,4 +1,4 @@
-import { Box, Typography } from "@mui/material";
+import { Box, Grid, ListItemIcon, Typography } from "@mui/material";
 import * as React from 'react';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
@@ -8,6 +8,10 @@ import Avatar from '@mui/material/Avatar';
 import MedicalServicesIcon from '@mui/icons-material/MedicalServices';
 import RestaurantIcon from '@mui/icons-material/Restaurant';
 import { Coffee, Store } from "@mui/icons-material";
+import MasterCard from "../Images/master-card.png"
+import Visa1 from "../Images/visa-red.png"
+import Visa2 from "../Images/visa-blue.png"
+import Visa3 from "../Images/visa-ash.png"
 
 
 export function TransactionsTemp(props) {
@@ -27,13 +31,42 @@ export function TransactionsTemp(props) {
     );
 }
 
+export function CardsTemp(props) {
+    return (
+        <Box>
+            <List sx={{ width: '100%', maxWidth: 360, bgcolor: 'transparent', color: 'white' }}>
+                <ListItem>
+                    <ListItemIcon>
+                        <img src={props.ListIcon} alt='' />
+                    </ListItemIcon>
+                    <ListItemText primary={props.primaryText} secondary={<Typography fontSize='.8em' color='#70707C'>{props.cardType}</Typography>} />
+                </ListItem>
+            </List>
+        </Box>
+    );
+}
+
+
+
 export function TransactionsTab() {
     return (
         <Box>
-            <TransactionsTemp primaryText='Apple Store' ListIcon={<Store />} date='July 20, 2014' />
-            <TransactionsTemp primaryText='Starbucks Cafe' ListIcon={<Coffee />} date='July 20, 2014' />
-            <TransactionsTemp primaryText='Pharmacy' ListIcon={<MedicalServicesIcon />} date='July 20, 2014' />
-            <TransactionsTemp primaryText='Spar' ListIcon={<RestaurantIcon />} date='July 20, 2014' />
+            <Grid container justifyContent='space-evenly'>
+                <TransactionsTemp primaryText='Apple Store' ListIcon={<Store />} date='July 20, 2014' />
+                <CardsTemp primaryText='*4300' ListIcon={Visa1} cardType='Credit Card'/>
+            </Grid>
+            <Grid container>
+                <TransactionsTemp primaryText='Starbucks Cafe' ListIcon={<Coffee />} date='July 20, 2014' />
+                <CardsTemp primaryText='Spar' ListIcon={Visa2} cardType='Credit Card' />
+            </Grid>
+            <Grid container>
+                <TransactionsTemp primaryText='Pharmacy' ListIcon={<MedicalServicesIcon />} date='July 20, 2014' />
+                <CardsTemp primaryText='Spar' ListIcon={MasterCard} cardType='Credit Card' />
+            </Grid>
+            <Grid container>
+                <TransactionsTemp primaryText='Spar' ListIcon={<RestaurantIcon />} date='July 20, 2014' />
+                <CardsTemp primaryText='Spar' ListIcon={Visa3} cardType='Credit Card' />
+            </Grid>
         </Box>
     )
 }
