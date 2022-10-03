@@ -1,4 +1,4 @@
-import { Box, Grid, Button, ListItemIcon, Typography, Stack, } from "@mui/material";
+import { Box, Grid, Button, ListItemIcon, Typography, Stack, useMediaQuery, Divider, } from "@mui/material";
 import * as React from 'react';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
@@ -66,28 +66,30 @@ const LeftRightButton = () => {
 }
 
 export function TransactionsTab() {
+    const onMobile = useMediaQuery('(max-width: 1000px)')
     return (
-        <Stack width='35rem' spacing='-1em'>
+        <Stack width={onMobile ? '100vw' : '35rem'} spacing='-1em' flexWrap='wrap' overflow='auto'>
             <Grid container justifyContent='space-between' alignContent='center' pt='2em'>
                 <Typography pl='1em' variant='h5' color='white'>Last transaction</Typography>
                 <LeftRightButton />
             </Grid>
-            <Grid container justifyContent='space-between' alignContent='center'>
+            <Grid container justifyContent={onMobile ? 'center' : 'space-between'} alignContent={onMobile ? 'start' : 'center'} flex={1} flexDirection={onMobile ? 'column' : 'row'}>
                 <TransactionsTemp primaryText='Apple Store' ListIcon={<Store />} date='July 20, 2014' />
                 <CardsTemp primaryText='*4300' ListIcon={Visa1} cardType='Credit Card' />
                 <PriceText priceCount='-$13,500' />
             </Grid>
-            <Grid container justifyContent='space-between' alignContent='center'>
+                <Divider sx={{ color: 'red' }} light />
+            <Grid container justifyContent={onMobile ? 'center' : 'space-between'} alignContent={onMobile ? 'start' : 'center'} flexDirection={onMobile ? 'column' : 'row'}>
                 <TransactionsTemp primaryText='Starbucks Cafe' ListIcon={<Coffee />} date='July 20, 2014' />
                 <CardsTemp primaryText='Spar' ListIcon={Visa2} cardType='Credit Card' />
                 <PriceText priceCount='-$1,650' />
             </Grid>
-            <Grid container justifyContent='space-between' alignContent='center'>
+            <Grid container justifyContent={onMobile ? 'center' : 'space-between'} alignContent={onMobile ? 'start' : 'center'} flexDirection={onMobile ? 'column' : 'row'}>
                 <TransactionsTemp primaryText='Pharmacy' ListIcon={<MedicalServicesIcon />} date='July 20, 2014' />
                 <CardsTemp primaryText='Spar' ListIcon={MasterCard} cardType='Credit Card' />
                 <PriceText priceCount='-$5,800' />
             </Grid>
-            <Grid container justifyContent='space-between' alignContent='center'>
+            <Grid container justifyContent={onMobile ? 'center' : 'space-between'} alignContent={onMobile ? 'start' : 'center'} flexDirection={onMobile ? 'column' : 'row'}>
                 <TransactionsTemp primaryText='Spar' ListIcon={<RestaurantIcon />} date='July 20, 2014' />
                 <CardsTemp primaryText='Spar' ListIcon={Visa3} cardType='Credit Card' />
                 <PriceText priceCount='-$1,800' />
