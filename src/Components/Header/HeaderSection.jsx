@@ -1,4 +1,4 @@
-import { Box, Button, Stack, Typography, IconButton, useMediaQuery, Grid, Icon } from "@mui/material"
+import { Box, Button, Stack, Typography, IconButton, Grid, Icon, useMediaQuery } from "@mui/material"
 import AddIcon from '@mui/icons-material/Add';
 import { ArrowDropDown, } from "@mui/icons-material";
 import { RiFilterLine } from "react-icons/ri"
@@ -7,7 +7,6 @@ import EURCard from "../Images/eur.png"
 import USDCard from "../Images/red-usd-card.png"
 import { MdArrowDropUp } from "react-icons/md"
 import { Features } from "../Sections/Features";
-// import { TransactionsTab } from "../Sections/Transactions";
 import { TransactionsTab } from "../Sections/Transactions";
 import { Categories } from "../Sections/Category";
 
@@ -64,11 +63,28 @@ export function Statistics() {
     )
 }
 
+export function Cards() {
+    return (
+        <Box>
+            <Grid container justifyContent='center' alignItems='start' width='100vw' gap={3}>
+                <Box>
+                    <img src={BTCCard} alt='spend trend' />
+                </Box>
+                <Box>
+                    <img src={EURCard} alt='spend trend' />
+                </Box>
+                <Box>
+                    <img src={USDCard} alt='spend trend' />
+                </Box>
+            </Grid>
+        </Box>
+    )
+}
+
 
 
 
 export default function HeaderIntro() {
-    const onMobile = useMediaQuery('(max-width: 1000px)')
     return (
         <Box gap={5}>
             <Stack direction='row' flexWrap='wrap' gap={1} justifyContent='space-around' p={2}>
@@ -87,17 +103,8 @@ export default function HeaderIntro() {
                     </IconButton>
                 </Box>
             </Stack>
-            <Grid container sx={{ display: 'flex', flexDirection: onMobile ? 'column' : 'row' }} columnSpacing={4} >
-                <Box height='220px' width='500px' boxShadow='none'>
-                    <img src={BTCCard} alt='' />
-                </Box>
-                <Box height='220px' width='368px'>
-                    <img src={EURCard} alt='' />
-                </Box>
-                <Box height='220px' width='368px'>
-                    <img src={USDCard} alt='' />
-                </Box>
-            </Grid>
+            <Cards />
+
             <Box p='4em'>
                 <Statistics />
             </Box>
