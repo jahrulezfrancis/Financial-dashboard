@@ -9,6 +9,7 @@ import { MdArrowDropUp } from "react-icons/md"
 import { Features } from "../Sections/Features";
 // import { TransactionsTab } from "../Sections/Transactions";
 import { TransactionsTab } from "../Sections/Transactions";
+import { Categories } from "../Sections/Category";
 
 
 
@@ -104,7 +105,14 @@ export default function HeaderIntro() {
                 <Features />
             </Box>
             <Box bgcolor='#0F0F13'>
-                <TransactionsTab />
+                <Grid container>
+                    <Box>
+                        <TransactionsTab />
+                    </Box>
+                    <Box>
+                        <Categories />
+                    </Box>
+                </Grid>
             </Box>
         </Box >
 
