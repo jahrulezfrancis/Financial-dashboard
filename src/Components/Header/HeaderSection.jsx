@@ -7,6 +7,7 @@ import EURCard from "../Images/eur.png"
 import USDCard from "../Images/red-usd-card.png"
 import { MdArrowDropUp } from "react-icons/md"
 import { Features } from "../Sections/Features";
+import { TransactionsTab } from "../Sections/Transactions";
 
 
 
@@ -100,6 +101,9 @@ export default function HeaderIntro() {
             </Box>
             <Box>
                 <Features />
+            </Box>
+            <Box bgcolor='#0F0F13'>
+                <TransactionsTab />
             </Box>
         </Box >
 
