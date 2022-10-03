@@ -23,7 +23,7 @@ export function Features() {
                 <Box>
                     <Typography color='white' variant="p">Fast payment</Typography>
                 </Box>
-                <Button sx={{ bgcolor: '#1E1E24', borderRadius: '4em', color: "white", height: '4em', margin:'1em' }}>{<MdAdd />}</Button>
+                <Button sx={{ bgcolor: '#1E1E24', borderRadius: '4em', color: "white", height: '4em', margin: '1em' }}>{<MdAdd />}</Button>
                 <ButtonTemp color='blue' title='Training' price='$650' />
                 <ButtonTemp color='#FFF736' title='Internet' price='$45' />
                 <ButtonTemp color='#62F783' title='Gaz Station' price='$135' />
