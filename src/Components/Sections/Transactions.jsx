@@ -31,6 +31,7 @@ export function TransactionsTemp(props) {
     );
 }
 
+
 export function CardsTemp(props) {
     return (
         <Box>
@@ -46,6 +47,7 @@ export function CardsTemp(props) {
     );
 }
 
+
 const PriceText = (props) => {
     return (
         <Grid alignItems='' p='1em'>
@@ -56,6 +58,7 @@ const PriceText = (props) => {
     )
 }
 
+
 const LeftRightButton = () => {
     return (
         <Grid>
@@ -65,10 +68,11 @@ const LeftRightButton = () => {
     )
 }
 
+
 export function TransactionsTab() {
     const onMobile = useMediaQuery('(max-width: 1000px)')
     return (
-        <Stack width={onMobile ? '100vw' : '35rem'} spacing='-1em' flexWrap='wrap' overflow='auto'>
+        <Stack width={onMobile ? '100vw' : '35rem'} spacing={onMobile ? '1em' : '-1em'} flexWrap='wrap' overflow='auto'>
             <Grid container justifyContent='space-between' alignContent='center' pt='2em'>
                 <Typography pl='1em' variant='h5' color='white'>Last transaction</Typography>
                 <LeftRightButton />
@@ -78,7 +82,7 @@ export function TransactionsTab() {
                 <CardsTemp primaryText='*4300' ListIcon={Visa1} cardType='Credit Card' />
                 <PriceText priceCount='-$13,500' />
             </Grid>
-                <Divider sx={{ color: 'red' }} light />
+            <Divider sx={{ color: 'red' }} light />
             <Grid container justifyContent={onMobile ? 'center' : 'space-between'} alignContent={onMobile ? 'start' : 'center'} flexDirection={onMobile ? 'column' : 'row'}>
                 <TransactionsTemp primaryText='Starbucks Cafe' ListIcon={<Coffee />} date='July 20, 2014' />
                 <CardsTemp primaryText='Spar' ListIcon={Visa2} cardType='Credit Card' />
