@@ -86,7 +86,7 @@ export function Cards() {
 
 export default function HeaderIntro() {
     return (
-        <Box gap={5}>
+        <Box gap={5} mt='4.5em'>
             <Stack direction='row' flexWrap='wrap' gap={1} justifyContent='space-around' p={2}>
                 <Stack flexDirection='row' gap={2}>
                     <Typography variant="h5" sx={{ color: 'white' }}>Overview</Typography>
