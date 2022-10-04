@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Grid, Input } from '@mui/material';
+import { Grid, Input, useMediaQuery } from '@mui/material';
 import HeaderLogo from "../Images/Logo.png"
 import { Link as NavLink } from 'react-router-dom';
 import { Box } from '@mui/system';
@@ -19,12 +19,22 @@ import PersonAdd from '@mui/icons-material/PersonAdd';
 import Settings from '@mui/icons-material/Settings';
 import Logout from '@mui/icons-material/Logout';
 import { Search } from '@mui/icons-material';
+import Drawer from '@mui/material/Drawer';
+import Button from '@mui/material/Button';
+import List from '@mui/material/List';
+import ListItem from '@mui/material/ListItem';
+import ListItemButton from '@mui/material/ListItemButton';
+import ListItemText from '@mui/material/ListItemText';
+import InboxIcon from '@mui/icons-material/MoveToInbox';
+import MailIcon from '@mui/icons-material/Mail';
+import { MdDashboard } from 'react-icons/md';
+
 
 
 export default function Navigation() {
-    // const onMobile = useMediaQuery('(max-width: 1000px)')
+    const onMobile = useMediaQuery('(max-width: 1000px)')
     return (
-        <Box zIndex='1' position='fixed' right='0' left='0' top='0' mb='10em'>
+        <Box display={onMobile ? 'none' : 'block'} zIndex='1' position='fixed' right='0' left='0' top='0' mb='10em'>
             <Grid sx={{ width: '100%', bgcolor: '#0F0F13', p: '1em', alignItems: 'center' }} >
                 <Grid container gap={3} sx={{ display: 'flex', justifyContent: 'space-around', alignItems: 'center' }}>
                     <Box>
@@ -62,6 +72,86 @@ export default function Navigation() {
                 </Grid>
             </Grid>
         </Box>
+    );
+}
+
+
+export function MobileMenu() {
+    const onMobile = useMediaQuery('(max-width: 1000px)')
+    const [state, setState] = React.useState({
+        top: false,
+        left: false,
+        bottom: false,
+        right: false,
+    });
+
+    const toggleDrawer = (anchor, open) => (event) => {
+        if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
+            return;
+        }
+
+        setState({ ...state, [anchor]: open });
+    };
+
+    const list = (anchor) => (
+        <Box display={onMobile ? 'block' : 'none'}
+            sx={{ width: anchor === 'top' || anchor === 'bottom' ? 'auto' : 250 }}
+            role="presentation"
+            bgcolor='#0B4850' width='100vh'
+            onClick={toggleDrawer(anchor, false)}
+            onKeyDown={toggleDrawer(anchor, false)}
+        >
+            <List>
+                {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
+                    <ListItem key={text} disablePadding>
+                        <ListItemButton>
+                            <ListItemIcon>
+                                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+                            </ListItemIcon>
+                            <ListItemText primary={text} />
+                        </ListItemButton>
+                    </ListItem>
+                ))}
+            </List>
+            <Divider />
+            <List>
+                {['All mail', 'Trash', 'Spam'].map((text, index) => (
+                    <ListItem key={text} disablePadding>
+                        <ListItemButton>
+                            <ListItemIcon>
+                                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+                            </ListItemIcon>
+                            <ListItemText primary={text} />
+                        </ListItemButton>
+                    </ListItem>
+                ))}
+            </List>
+        </Box>
+    );
+
+    return (
+        <div>
+            {['right'].map((anchor) => (
+                <React.Fragment key={anchor}>
+                    <Grid container alignItems='center' justifyContent='space-between'>
+                        <Box>
+                            <img src={HeaderLogo} alt='Header logo' />
+                        </Box>
+                        <Box>
+
+                            <Button onClick={toggleDrawer(anchor, true)}><MdDashboard fontSize='3em' /></Button>
+                            <Drawer
+                                anchor={anchor}
+                                open={state[anchor]}
+                                onClose={toggleDrawer(anchor, false)}
+                            >
+                                {list(anchor)}
+                            </Drawer>
+                        </Box>
+                    </Grid>
+                </React.Fragment>
+            ))}
+        </div>
     );
 }
 
