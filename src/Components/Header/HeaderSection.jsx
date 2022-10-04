@@ -1,4 +1,4 @@
-import { Box, Button, Stack, Typography, IconButton, Grid, Icon, } from "@mui/material"
+import { Box, Button, Stack, Typography, IconButton, Grid, Icon, useMediaQuery, } from "@mui/material"
 import AddIcon from '@mui/icons-material/Add';
 import { ArrowDropDown, } from "@mui/icons-material";
 import { RiFilterLine } from "react-icons/ri"
@@ -64,10 +64,11 @@ export function Statistics() {
 }
 
 export function Cards() {
+    const onMobile = useMediaQuery('(max-width: 1000px)')
     return (
-        <Box>
+        <Box >
             <Grid container justifyContent='center' alignItems='start' width='100vw' gap={3}>
-                <Box>
+                <Box p={onMobile ? '2em' : '0em'}>
                     <img src={BTCCard} alt='spend trend' />
                 </Box>
                 <Box>
@@ -103,7 +104,9 @@ export default function HeaderIntro() {
                     </IconButton>
                 </Box>
             </Stack>
-            <Cards />
+            <Box>
+                <Cards />
+            </Box>
 
             <Box p='4em'>
                 <Statistics />
