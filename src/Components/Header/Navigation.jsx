@@ -133,22 +133,24 @@ export function MobileMenu() {
         <div>
             {['right'].map((anchor) => (
                 <React.Fragment key={anchor}>
-                    <Grid container alignItems='center' justifyContent='space-between'>
-                        <Box>
-                            <img src={HeaderLogo} alt='Header logo' />
-                        </Box>
-                        <Box>
+                    <Box display={onMobile ? 'block' : 'none'} position='fixed' zIndex='5' top='0' left='0' right='0' bgcolor='#0F0F13'>
+                        <Grid p='1em' container alignItems='center' justifyContent='space-between'>
+                            <Box>
+                                <img src={HeaderLogo} alt='Header logo' />
+                            </Box>
+                            <Box>
 
-                            <Button onClick={toggleDrawer(anchor, true)}><MdDashboard fontSize='3em' /></Button>
-                            <Drawer
-                                anchor={anchor}
-                                open={state[anchor]}
-                                onClose={toggleDrawer(anchor, false)}
-                            >
-                                {list(anchor)}
-                            </Drawer>
-                        </Box>
-                    </Grid>
+                                <Button onClick={toggleDrawer(anchor, true)}><MdDashboard color='#EE1616' fontSize='3em' /></Button>
+                                <Drawer
+                                    anchor={anchor}
+                                    open={state[anchor]}
+                                    onClose={toggleDrawer(anchor, false)}
+                                >
+                                    {list(anchor)}
+                                </Drawer>
+                            </Box>
+                        </Grid>
+                    </Box>
                 </React.Fragment>
             ))}
         </div>
